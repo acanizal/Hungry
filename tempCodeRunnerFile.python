@@ -1,0 +1,14 @@
+def merge(arrays):
+    result = list()
+    while arrays:
+        heads = [a[0] for a in arrays]
+        next_value = min(heads)
+        arrays[heads.index(next_value)].remove(next_value)
+        result.append(next_value)
+        arrays = filter(None, arrays)
+    return result
+
+if __name__ == "__main__":
+    arrays = [[0, 5, 8, 9], [1, 2, 7], [10]]
+    print merge(arrays)
+    
