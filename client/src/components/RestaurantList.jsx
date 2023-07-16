@@ -1,6 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import RestaurantFinder from "../apis/RestaurantFinder"
 
 const RestaurantList = () => {
+
+    //adds a slash to the url of the RestaurantFinder api to prevent writing the url over and over
+    useEffect(async() => {
+        try {
+          const response = await RestaurantFinder.get("/");
+          console.log(response);
+        } catch(err) {
+
+        }
+        //this empty array prevents from looping the useEffect
+    },[]);
+
   return (
     <div className="list-group">
       <table className="table table-hover table-dark">
