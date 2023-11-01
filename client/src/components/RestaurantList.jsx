@@ -2,15 +2,24 @@ import React, {useEffect} from 'react';
 import RestaurantFinder from "../apis/RestaurantFinder"
 
 const RestaurantList = () => {
+  //const restaurants, setRestaurants} = useContext(RestaurantsContext);
 
     //adds a slash to the url of the RestaurantFinder api to prevent writing the url over and over
-    useEffect(async() => {
+    useEffect(() => {
+        //useEffect does not like async, because the code wasn't returning anything, but async implies 
+        //returning a promise, so create a async fxn and return inside the useEffect
+      const fetchData = async () => {
         try {
           const response = await RestaurantFinder.get("/");
+          //setRestaurants(response.data.data.restaurants)
           console.log(response);
         } catch(err) {
 
         }
+      };
+      fetchData();
+
+        
         //this empty array prevents from looping the useEffect
     },[]);
 

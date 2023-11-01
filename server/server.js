@@ -1,10 +1,13 @@
 require('dotenv').config()
-const express = require("express")
+const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 const db = require("./db"); // it knows to look for an index.js file
 
 app.use(express.json());
+
+app.use(cors());
 
 // get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
