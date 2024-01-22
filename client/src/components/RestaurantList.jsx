@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
-import RestaurantFinder from "../apis/RestaurantFinder"
+import React, {useEffect, useContext } from 'react';
+import RestaurantFinder from "../apis/RestaurantFinder";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 
-const RestaurantList = () => {
-  //const restaurants, setRestaurants} = useContext(RestaurantsContext);
+const RestaurantList = (props) => {
+    const {restaurants, setRestaurants} = useContext(RestaurantsContext);
 
     //adds a slash to the url of the RestaurantFinder api to prevent writing the url over and over
     useEffect(() => {
@@ -10,9 +11,11 @@ const RestaurantList = () => {
         //returning a promise, so create a async fxn and return inside the useEffect
       const fetchData = async () => {
         try {
+          // the "/" adds the url to the base url located in RestaurantFinder api
           const response = await RestaurantFinder.get("/");
-          //setRestaurants(response.data.data.restaurants)
-          console.log(response);
+          setRestaurants(response.data.data.restaurants);
+          
+          //console.log(response);
         } catch(err) {
 
         }
